@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.projetoandroid30_03.DataStoreExemplo.ui.LoginScreen
 import com.example.projetoandroid30_03.SharedExemplo.ui.LoginPreferencesScreen
 import com.example.projetoandroid30_03.ui.theme.ProjetoAndroid30_03Theme
 
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ProjetoAndroid30_03Theme {
                 Surface() {
-                    LoginPreferencesScreen()
+                    LoginScreen()
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.example.projetoandroid30_03.SharedExemplo.ui
+package com.example.projetoandroid30_03.DataStoreExemplo.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,14 +13,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.projetoandroid30_03.DataStoreExemplo.viewmodel.LoginViewModel
 import com.example.projetoandroid30_03.SharedExemplo.viewmodel.LoginPreferencesViewModel
-import java.net.SocketAddress
 
 @Composable
-fun LoginPreferencesScreen(viewModel: LoginPreferencesViewModel = viewModel()) {
-    val isLogged  by viewModel.isLogged
-    val userType  by viewModel.userType
+fun LoginScreen(viewModel: LoginViewModel = viewModel()) {
+
+    val isLogged by viewModel.isLogged.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -33,9 +33,9 @@ fun LoginPreferencesScreen(viewModel: LoginPreferencesViewModel = viewModel()) {
 
         Text(
             text = if (isLogged){
-                "Usuario logado"
+                "Usuario logado Store"
             }else{
-                "Usuario Deslogado"
+                "Usuario Deslogado Store"
             }
         )
 
@@ -51,11 +51,7 @@ fun LoginPreferencesScreen(viewModel: LoginPreferencesViewModel = viewModel()) {
         }
         Spacer(modifier = Modifier.height(32.dp))
 
-        Text("Tipo: ${userType}")
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = {viewModel.toggleUserType()}) {
-            Text("Mudar Tipo de Usuario")
-        }
+
 
 
 

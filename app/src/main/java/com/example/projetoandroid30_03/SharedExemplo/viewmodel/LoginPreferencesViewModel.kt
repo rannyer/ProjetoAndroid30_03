@@ -11,12 +11,22 @@ class LoginPreferencesViewModel(application: Application): AndroidViewModel(appl
     var isLogged = mutableStateOf(false)
         private set
 
+    var userType = mutableStateOf("USER")
+        private set
+
     init{
-        loadLoginState()
+        loadData()
     }
 
-    private fun loadLoginState(){
+    private fun loadData(){
         isLogged.value = preferencesManager.getLoginState()
+        userType.value = preferencesManager.getUserType()
+
+    }
+    fun toggleUserType(){
+        val newType =  if(userType.value == "USER") "ADMIN" else "USER"
+        preferencesManager.saveUserType(newType)
+        userType.value = newType
     }
 
     fun login(){
